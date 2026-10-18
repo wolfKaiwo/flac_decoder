@@ -2,7 +2,7 @@
 #define BIT_READER_H
 
 #include "flac_decoder.h"
-#include <cstdint>
+#include <stdint.h>
 
 typedef struct {
   uint32_t acumulator;
@@ -12,7 +12,7 @@ typedef struct {
 
 } bit_reader_t;
 
-void bit_reader_init(bit_reader_t *br, flac_read_cb_t *flac_read_cb,
+void bit_reader_init(bit_reader_t *br, flac_read_cb_t flac_read_cb,
                      void *user_data);
 uint8_t bit_reader_unary_decoding(bit_reader_t *br);
 uint64_t bit_reader_read_utf8(bit_reader_t *br);

@@ -1,7 +1,6 @@
 #ifndef FLAC_DECODER_H
 #define FLAC_DECODER_H
 
-#include <cstdint>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
