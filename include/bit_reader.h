@@ -14,6 +14,8 @@ typedef struct {
 
 void bit_reader_init(bit_reader_t *br, flac_read_cb_t flac_read_cb,
                      void *user_data);
+
+uint32_t bit_reader_read_bits(bit_reader_t *br, uint8_t num_bits);
 uint8_t bit_reader_unary_decoding(bit_reader_t *br);
 uint64_t bit_reader_read_utf8(bit_reader_t *br);
 void bit_reader_skip_bits(bit_reader_t *br, uint8_t num);

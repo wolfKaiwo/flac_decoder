@@ -33,7 +33,32 @@ uint8_t bit_reader_unary_decoding(bit_reader_t *br) {
   }
 }
 
-uint64_t bit_reader_read_utf8(bit_reader_t *br) {}
+uint64_t bit_reader_read_utf8(bit_reader_t *br) {
+  uint8_t byte = bit_reader_read_bits(br, 8);
+
+  if (byte & 0b10000000) {
+    return byte;
+  }
+
+  uint8_t ones = 0;
+
+  for (uint8_t mask; mask & byte; mask >>= 1) {
+    ones++;
+  }
+
+  if (ones == 1 || ones > 7) {
+    return 0;
+  }
+
+  uint8_t bytes_left = ones - 1;
+  uint64_t result = byte & ((1 - (8 - ones)) - 1);
+
+  for (uint8_t i = 0; i < bytes_left; i++) {
+    uint8_t next_byte = bit_reader_read_bits(br, 8);
+    result = (result << 6) | (next_byte & 0b00111111);
+  }
+  return result;
+}
 
 void bit_reader_skip_bits(bit_reader_t *br, uint8_t num) {
   while (num > 32) {
