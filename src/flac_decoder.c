@@ -64,22 +64,22 @@ int flac_decoder_init(flac_decoder_t *decoder, flac_info_t *info) {
         bit_reader_read_bits(&decoder->bit_reader, 24);
 
     switch (current_block_type) {
-    case 4: // VORBIS_COMMENT[cite: 2]
-      printf("TODO: Gonna read tags here( title, artist)  - %u bytes",
+    case 4: // VORBIS_COMMENT
+      printf("TODO: Gonna read tags here( title, artist)  - %u bytes\n",
              current_block_length);
       break;
-    case 6: // PICTURE[cite: 2]
-      printf("TODO: gonna read album cover here - %u bytes",
+    case 6: // PICTURE
+      printf("TODO: gonna read album cover here - %u bytes\n",
              current_block_length);
       break;
     default:
-      printf("Skipping block of type: %u of size: %u bytes", current_block_type,
-             current_block_length);
+      printf("Skipping block of type: %u of size: %u bytes\n",
+             current_block_type, current_block_length);
       break;
     }
     bit_reader_skip_bits(&decoder->bit_reader, current_block_length * 8);
   }
-  printf("Metadata finished, Decdoer is ready for audio frames");
+  printf("Metadata finished, Decdoer is ready for audio frames\n");
   return 0;
 }
 
