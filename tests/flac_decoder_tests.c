@@ -19,9 +19,8 @@ static uint8_t mock_file[] = {
     0xD5, 0xB0, 0x56, 0x49, 0x75, 0xE9, 0x8B, 0x8D, 0x8B, 0x93, 0x04, 0x22,
     0x75, 0x7B, 0x81, 0x03,
 
-    // 4. Kolejny blok metadanych (np. Vorbis Comment)
+    // 4.Next metadata block
     // Zaczynamy bajtem 0x84 (binarnie 10000100) -> is_last_block = 1, type =
-    // 4[cite: 6]
     // Długość ustawiamy na 0, żeby pętla od razu zakończyła odczyt
     0x84, 0x00, 0x00, 0x00};
 static size_t mock_file_pos = 0;

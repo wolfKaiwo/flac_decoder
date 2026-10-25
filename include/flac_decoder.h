@@ -9,7 +9,7 @@ typedef struct {
   uint32_t sample_rate;
   uint8_t channels;
   uint8_t bits_per_sample;
-  uint32_t total_samples;
+  uint64_t total_samples;
   uint16_t min_block_size;
   uint16_t max_block_size;
   uint32_t min_frame_size;
@@ -36,7 +36,8 @@ int flac_decoder_init(flac_decoder_t *decoder, flac_info_t *info);
 // Dekoduje jeden blok audio do dostarczonego bufora
 // bufor musi być wystarczająco duży (max_block_size z STREAMINFO * ilość
 // kanałów) zwracaa ilość odczytanych sampli na kanał abo zwraca błąd(< 0)
-int flac_decoder_read_frame(flac_decoder_t *decoder, int32_t *output_buffer);
+int flac_decoder_read_frame(flac_decoder_t *decoder, int32_t *output_buffer,
+                            flac_info_t *info);
 
 // Zwalnia pamięć zajmowaną przez dekoder
 void flac_decoder_destroy(flac_decoder_t *decoder);
